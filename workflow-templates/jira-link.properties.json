@@ -1,0 +1,4 @@
+{
+  "name": "Jira link",
+  "description": "Adds the Jira task link to the pull request, based on the branch name (e.g. APPSTATS-12)."
+}
