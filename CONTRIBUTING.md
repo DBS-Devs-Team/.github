@@ -51,6 +51,24 @@ Branches and commit messages follow the same rule: the **Jira task key**.
 - Nothing is lost: the code is already on `main`, and the branch can be restored
   with the **Restore branch** button in the pull request.
 
+## Jira integration
+
+A GitHub Action automatically adds the link to the Jira task in the pull request,
+based on the branch name (e.g. branch `APPSTATS-12` → link to task `APPSTATS-12`).
+The link is written in the **Jira task** section of the pull request template.
+
+The Action is available as a workflow template in this repository
+(`workflow-templates/jira-link.yml`), but it must be enabled in each repository.
+
+### How to enable it in a repository
+1. Go to **Actions → New workflow**, find **Jira link** in the
+   *By DBS-Devs-Team* section, click **Configure** and then **Commit**.
+2. Go to **Settings → Secrets and variables → Actions → Variables** and create
+   the variable `JIRA_BASE_URL` with the address of our Jira site
+   (e.g. `https://<our-site>.atlassian.net`).
+
+If `JIRA_BASE_URL` is not set, the Action does nothing.
+
 ## Open points
 
 - **Merge strategy: squash or merge commit**
@@ -60,6 +78,6 @@ Branches and commit messages follow the same rule: the **Jira task key**.
   squash is recommended: otherwise `main` would show several identical commit messages.
 - **Areas and reviewers**: how to split the project areas and who is the lead reviewer
   for each one (CODEOWNERS).
-- **Jira integration**: GitHub Action that automatically adds the Jira link to the
-  pull request (when Jira is set up).
+- **Jira integration**: the GitHub Action is ready as a workflow template.
+  To be enabled in each repository once Jira is set up.
 - **Visibility of the `.github` repository**: public or private.
