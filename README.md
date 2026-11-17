@@ -20,11 +20,17 @@ A repository created with `git init` does **not** include them.
 ### Option 1 – Terminal (GitHub CLI)
 Requires [GitHub CLI](https://cli.github.com/) and a one-time `gh auth login`.
 
+Create the repository and clone it:
+
 ```bash
 gh repo create DBS-Devs-Team/<app-name> --template DBS-Devs-Team/app-template --private --clone
 ```
 
-The repository is created on GitHub and cloned into the `<app-name>` folder.
+Apply the repository settings (they are not copied from the template):
+
+```bash
+gh repo edit DBS-Devs-Team/<app-name> --delete-branch-on-merge
+```
 
 ### Option 2 – GitHub website
 1. Open [app-template](https://github.com/DBS-Devs-Team/app-template)
@@ -35,5 +41,7 @@ The repository is created on GitHub and cloned into the `<app-name>` folder.
 ```bash
 git clone https://github.com/DBS-Devs-Team/<app-name>.git
 ```
+
+4. Settings → General → Pull Requests: enable **Automatically delete head branches**.
 
 Then follow the checklist in the app-template README.
