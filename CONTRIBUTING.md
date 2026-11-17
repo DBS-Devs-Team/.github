@@ -31,8 +31,16 @@ Branches and commit messages follow the same rule: the **Jira task key**.
 | | Example |
 |---|---|
 | Branch | `APPSTATS-12` |
-| Commit message | `APPSTATS-12` |
+| Commit message | `APPSTATS-12` (optionally followed by a short description) |
 
+- Jira links branches, commits and pull requests to the task automatically,
+  as long as they contain the task key.
+- **One task = one branch = one pull request.**
+- Follow-up fixes on a task that is already merged: use a suffix
+  (`APPSTATS-12-1`, `APPSTATS-12-2`…) and move the task back to *In progress*.
+- New work: create a new Jira task.
+- Be careful with the dash: `APPSTATS-12-1` is task 12 (fix 1),
+  `APPSTATS-121` is a different task.
 - The type of work (feature, bug fix…) is defined in the Jira task.
 - The description of the change goes in the pull request template.
 
@@ -40,44 +48,9 @@ Branches and commit messages follow the same rule: the **Jira task key**.
 
 ### Opening a pull request
 - Each pull request covers **one Jira task** only.
+- Under **Jira task**, write the task key (e.g. `APPSTATS-12`).
 - Fill in every section of the template. If a section does not apply, write `N/A`.
 
 ### Review
 - Before merging, **another team member must review and approve** the pull request.
-- You cannot approve your own pull request.
-
-### After the merge
-- The branch is **deleted automatically** once the pull request is merged.
-- Nothing is lost: the code is already on `main`, and the branch can be restored
-  with the **Restore branch** button in the pull request.
-
-## Jira integration
-
-A GitHub Action automatically adds the link to the Jira task in the pull request,
-based on the branch name (e.g. branch `APPSTATS-12` → link to task `APPSTATS-12`).
-The link is written in the **Jira task** section of the pull request template.
-
-The Action is available as a workflow template in this repository
-(`workflow-templates/jira-link.yml`), but it must be enabled in each repository.
-
-### How to enable it in a repository
-1. Go to **Actions → New workflow**, find **Jira link** in the
-   *By DBS-Devs-Team* section, click **Configure** and then **Commit**.
-2. Go to **Settings → Secrets and variables → Actions → Variables** and create
-   the variable `JIRA_BASE_URL` with the address of our Jira site
-   (e.g. `https://<our-site>.atlassian.net`).
-
-If `JIRA_BASE_URL` is not set, the Action does nothing.
-
-## Open points
-
-- **Merge strategy: squash or merge commit**
-  *Squash and merge* combines all the commits of a pull request into a single commit on `main`,
-  so `main` has one clean commit per task. *Merge commit* keeps every commit of the branch
-  plus an extra merge commit. Since commit messages contain only the Jira key,
-  squash is recommended: otherwise `main` would show several identical commit messages.
-- **Areas and reviewers**: how to split the project areas and who is the lead reviewer
-  for each one (CODEOWNERS).
-- **Jira integration**: the GitHub Action is ready as a workflow template.
-  To be enabled in each repository once Jira is set up.
-- **Visibility of the `.github` repository**: public or private.
+- You cannot approve your own pull
