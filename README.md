@@ -13,5 +13,27 @@ Start from [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Starting a new app
 
-Create the repository from [app-template](https://github.com/DBS-Devs-Team/app-template)
-with **Use this template**, then follow the checklist in its README.
+Always create new repositories from `app-template`: it already includes
+the pull request template and the Jira link Action.
+A repository created with `git init` does **not** include them.
+
+### Option 1 – Terminal (GitHub CLI)
+Requires [GitHub CLI](https://cli.github.com/) and a one-time `gh auth login`.
+
+```bash
+gh repo create DBS-Devs-Team/<app-name> --template DBS-Devs-Team/app-template --private --clone
+```
+
+The repository is created on GitHub and cloned into the `<app-name>` folder.
+
+### Option 2 – GitHub website
+1. Open [app-template](https://github.com/DBS-Devs-Team/app-template)
+   and click **Use this template → Create a new repository**.
+2. Owner: `DBS-Devs-Team`, name: `<app-name>`, visibility: **Private**.
+3. Clone it:
+
+```bash
+git clone https://github.com/DBS-Devs-Team/<app-name>.git
+```
+
+Then follow the checklist in the app-template README.
